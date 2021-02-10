@@ -19,8 +19,8 @@ scene.add(mesh)
  * Sizes
  */
 const sizes = {
-    width: 800,
-    height: 600
+  width: 800,
+  height: 600,
 }
 
 /**
@@ -34,7 +34,7 @@ scene.add(camera)
  * Renderer
  */
 const renderer = new THREE.WebGLRenderer({
-    canvas: canvas
+  canvas: canvas,
 })
 renderer.setSize(sizes.width, sizes.height)
 renderer.render(scene, camera)
