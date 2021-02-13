@@ -32,6 +32,12 @@ mesh.scale.y = 0.25
 mesh.scale.z = 0.5
 // or `mesh.scale.set(2, 0.25, 0.5)`
 
+// Rotation
+mesh.rotation.reorder('YXZ') // reorder before changing the rotation (default: 'XYZ')
+mesh.rotation.x = Math.PI * 0.25
+mesh.rotation.y = Math.PI * 0.25
+// or `mesh.rotation.set(Math.PI * 0.25, Math.PI * 0.25, 0)`
+
 scene.add(mesh)
 
 /**

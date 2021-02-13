@@ -148,7 +148,7 @@ mesh.rotation.y = Math.PI * 0.25
 
 Is it easy? Yes, but when you combine those rotations, you might end up with strange results. Why? Because, while you rotate the `x` axis, you also change the other axes' orientation. The rotation applies in the following order: `x`, `y`, and then `z`. That can result in weird behaviors like one named gimbal lock when one axis has no more effect, all because of the previous ones.
 
-We can change this order by using the `reorder(...)` method `object.rotation.reorder('yxz')`
+We can change this order by using the `reorder(...)` method `object.rotation.reorder('YXZ')`
 
 While [Euler](https://threejs.org/docs/index.html#api/en/math/Euler) is easier to understand, this order problem can cause issues. And this is why most engines and 3D softwares use another solution named [Quaternion](https://threejs.org/docs/#api/en/math/Quaternion).
 
