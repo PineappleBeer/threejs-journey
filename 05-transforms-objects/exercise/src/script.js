@@ -8,6 +8,12 @@ const canvas = document.querySelector('canvas.webgl')
 const scene = new THREE.Scene()
 
 /**
+ * Axes helper
+ */
+const axesHelper = new THREE.AxesHelper()
+scene.add(axesHelper)
+
+/**
  * Objects
  */
 const geometry = new THREE.BoxGeometry(1, 1, 1)
