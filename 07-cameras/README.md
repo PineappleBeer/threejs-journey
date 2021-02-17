@@ -14,7 +14,7 @@ The [Camera](https://threejs.org/docs/#api/en/cameras/Camera) class is what we c
 
 #### ArrayCamera
 
-The ArrayCamera is used to render your scene multiple times by using multiple cameras. Each camera will render a specific area of the canvas. You can imagine this looking like old school console multiplayer games where we had to share a split-screen.
+The [ArrayCamera](https://threejs.org/docs/#api/en/cameras/ArrayCamera) is used to render your scene multiple times by using multiple cameras. Each camera will render a specific area of the canvas. You can imagine this looking like old school console multiplayer games where we had to share a split-screen.
 
 #### StereoCamera
 
