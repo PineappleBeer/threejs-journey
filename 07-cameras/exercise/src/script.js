@@ -100,10 +100,13 @@ const tick = () => {
   const elapsedTime = clock.getElapsedTime()
 
   // Update objects
-  mesh.rotation.y = elapsedTime
   if (exerciseMode.is('Custom Controls')) {
-    camera.position.x = cursor.x
-    camera.position.y = cursor.y
+    camera.position.x = Math.sin(cursor.x * Math.PI * 2) * 2
+    camera.position.z = Math.cos(cursor.x * Math.PI * 2) * 2
+    camera.position.y = cursor.y * 3
+    camera.lookAt(mesh.position)
+  } else {
+    mesh.rotation.y = elapsedTime
   }
 
   // Render
