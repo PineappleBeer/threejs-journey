@@ -1,5 +1,6 @@
 import './style.css'
 import * as THREE from 'three'
+import { generateExerciseModes } from '../../../utils'
 
 /**
  * Base
@@ -23,19 +24,57 @@ const mesh = new THREE.Mesh(
 )
 scene.add(mesh)
 
-// Camera
-const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100)
-camera.position.x = 2
-camera.position.y = 2
-camera.position.z = 2
-camera.lookAt(mesh.position)
-scene.add(camera)
+// PerspectiveCamera
+const perspectiveCamera = new THREE.PerspectiveCamera(
+  75,
+  sizes.width / sizes.height,
+  0.1,
+  100
+)
+perspectiveCamera.position.x = 2
+perspectiveCamera.position.y = 2
+perspectiveCamera.position.z = 2
+perspectiveCamera.lookAt(mesh.position)
+scene.add(perspectiveCamera)
+
+// OrthographicCamera
+const aspectRatio = sizes.width / sizes.height
+const orthographicCamera = new THREE.OrthographicCamera(
+  -1 * aspectRatio,
+  1 * aspectRatio,
+  1,
+  -1,
+  0.1,
+  100
+)
+orthographicCamera.position.x = 2
+orthographicCamera.position.y = 2
+orthographicCamera.position.z = 2
+orthographicCamera.lookAt(mesh.position)
+scene.add(orthographicCamera)
 
 // Renderer
 const renderer = new THREE.WebGLRenderer({
   canvas: canvas,
 })
 renderer.setSize(sizes.width, sizes.height)
+
+// Exercise modes
+let camera = null
+generateExerciseModes([
+  {
+    name: 'PerspectiveCamera',
+    event: () => {
+      camera = perspectiveCamera
+    },
+  },
+  {
+    name: 'OrthographicCamera',
+    event: () => {
+      camera = orthographicCamera
+    },
+  },
+])
 
 // Animate
 const clock = new THREE.Clock()
