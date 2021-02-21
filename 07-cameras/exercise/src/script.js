@@ -61,16 +61,16 @@ renderer.setSize(sizes.width, sizes.height)
 
 // Exercise modes
 let camera = null
-generateExerciseModes([
+const exerciseMode = generateExerciseModes([
   {
     name: 'PerspectiveCamera',
-    event: () => {
+    handler: () => {
       camera = perspectiveCamera
     },
   },
   {
     name: 'OrthographicCamera',
-    event: () => {
+    handler: () => {
       camera = orthographicCamera
     },
   },
