@@ -19,6 +19,10 @@ export const generateExerciseModes = (modes = [], defaultMode) => {
     button.addEventListener('click', event => {
       ref.name = mode.name
       mode.handler(event)
+
+      modes
+        .filter(({ name }) => name !== mode.name)
+        .forEach(otherMode => otherMode.dispose?.(event))
     })
     wrapper.append(button)
 
