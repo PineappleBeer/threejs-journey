@@ -1,6 +1,11 @@
 export const generateExerciseModes = (modes = [], defaultMode) => {
   const initialMode = defaultMode ? defaultMode : modes[0].name
-  const ref = { name: initialMode }
+  const ref = {
+    name: initialMode,
+    is: function (modeName) {
+      return this.name === modeName
+    },
+  }
 
   const wrapper = document.createElement('div')
   wrapper.style.marginBottom = '10px'
