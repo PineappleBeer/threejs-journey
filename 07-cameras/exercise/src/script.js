@@ -14,6 +14,13 @@ const sizes = {
   height: 600,
 }
 
+// Cursor
+const cursor = { x: 0, y: 0 }
+window.addEventListener('mousemove', event => {
+  cursor.x = event.clientX / sizes.width - 0.5
+  cursor.y = event.clientY / sizes.height - 0.5
+})
+
 // Scene
 const scene = new THREE.Scene()
 
@@ -31,10 +38,6 @@ const perspectiveCamera = new THREE.PerspectiveCamera(
   0.1,
   100
 )
-perspectiveCamera.position.x = 2
-perspectiveCamera.position.y = 2
-perspectiveCamera.position.z = 2
-perspectiveCamera.lookAt(mesh.position)
 scene.add(perspectiveCamera)
 
 // OrthographicCamera
@@ -47,10 +50,6 @@ const orthographicCamera = new THREE.OrthographicCamera(
   0.1,
   100
 )
-orthographicCamera.position.x = 2
-orthographicCamera.position.y = 2
-orthographicCamera.position.z = 2
-orthographicCamera.lookAt(mesh.position)
 scene.add(orthographicCamera)
 
 // Renderer
@@ -66,12 +65,30 @@ const exerciseMode = generateExerciseModes([
     name: 'PerspectiveCamera',
     handler: () => {
       camera = perspectiveCamera
+      camera.position.x = 2
+      camera.position.y = 2
+      camera.position.z = 2
+      camera.lookAt(mesh.position)
     },
   },
   {
     name: 'OrthographicCamera',
     handler: () => {
       camera = orthographicCamera
+      camera.position.x = 2
+      camera.position.y = 2
+      camera.position.z = 2
+      camera.lookAt(mesh.position)
+    },
+  },
+  {
+    name: 'Custom Controls',
+    handler: () => {
+      camera = perspectiveCamera
+      camera.position.x = 0
+      camera.position.y = 0
+      camera.position.z = 3
+      camera.lookAt(mesh.position)
     },
   },
 ])
@@ -84,6 +101,10 @@ const tick = () => {
 
   // Update objects
   mesh.rotation.y = elapsedTime
+  if (exerciseMode.is('Custom Controls')) {
+    camera.position.x = cursor.x
+    camera.position.y = cursor.y
+  }
 
   // Render
   renderer.render(scene, camera)
