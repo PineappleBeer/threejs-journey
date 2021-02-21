@@ -1,5 +1,6 @@
 import './style.css'
 import * as THREE from 'three'
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import { generateExerciseModes } from '../../../utils'
 
 /**
@@ -60,6 +61,7 @@ renderer.setSize(sizes.width, sizes.height)
 
 // Exercise modes
 let camera = null
+let controls = null
 const exerciseMode = generateExerciseModes([
   {
     name: 'PerspectiveCamera',
@@ -91,6 +93,24 @@ const exerciseMode = generateExerciseModes([
       camera.lookAt(mesh.position)
     },
   },
+  {
+    name: 'OrbitControls',
+    handler: () => {
+      camera = perspectiveCamera
+      camera.position.x = 2
+      camera.position.y = 2
+      camera.position.z = 2
+      camera.lookAt(mesh.position)
+
+      // Controls
+      controls = new OrbitControls(camera, canvas)
+      controls.enableDamping = true
+    },
+    dispose: () => {
+      if (controls) controls.dispose()
+      controls = null
+    },
+  },
 ])
 
 // Animate
@@ -105,6 +125,8 @@ const tick = () => {
     camera.position.z = Math.cos(cursor.x * Math.PI * 2) * 2
     camera.position.y = cursor.y * 3
     camera.lookAt(mesh.position)
+  } else if (exerciseMode.is('OrbitControls')) {
+    controls.update()
   } else {
     mesh.rotation.y = elapsedTime
   }
