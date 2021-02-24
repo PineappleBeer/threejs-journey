@@ -18,6 +18,11 @@ const scene = new THREE.Scene()
 const boxGeometry = new THREE.BoxGeometry(1, 1, 1, 2, 2, 2)
 
 /**
+ * SphereGeometry
+ */
+const sphereGeometry = new THREE.SphereGeometry(1, 32, 32)
+
+/**
  * BufferGeometry
  */
 const bufferGeometry = new THREE.BufferGeometry()
@@ -58,9 +63,15 @@ const material = new THREE.MeshBasicMaterial({
 generateExerciseModes(
   [
     {
-      name: 'Box example',
+      name: 'BoxGeometry',
       handler: () => {
         geometry = boxGeometry
+      },
+    },
+    {
+      name: 'SphereGeometry',
+      handler: () => {
+        geometry = sphereGeometry
       },
     },
     {
