@@ -54,6 +54,20 @@ const positionsArray = new Float32Array([
 const positionsAttribute = new THREE.BufferAttribute(positionsArray, 3) // number 3 mean one vertice use 3 value in array (position x, y, z)
 bufferGeometry.setAttribute('position', positionsAttribute)
 
+/**
+ * Random 50 triangles
+ */
+const count = 50
+const multipleBufferGeometry = new THREE.BufferGeometry()
+const positionsArray2 = new Float32Array(count * 3 * 3) // 1 triangle has 3 vertices, 1 vertex use 3 values for position (x, y, z)
+
+for (let i = 0; i < count * 3 * 3; i++) {
+  positionsArray2[i] = (Math.random() - 0.5) * 4
+}
+
+const positionsAttribute2 = new THREE.BufferAttribute(positionsArray2, 3)
+multipleBufferGeometry.setAttribute('position', positionsAttribute2)
+
 // Exercise modes
 let geometry = null
 const material = new THREE.MeshBasicMaterial({
@@ -78,6 +92,12 @@ generateExerciseModes(
       name: 'Own buffer geometry',
       handler: () => {
         geometry = bufferGeometry
+      },
+    },
+    {
+      name: 'Random triangles',
+      handler: () => {
+        geometry = multipleBufferGeometry
       },
     },
   ],
