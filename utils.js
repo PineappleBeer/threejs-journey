@@ -8,13 +8,20 @@ export const generateExerciseModes = (modes = [], defaultMode) => {
   }
 
   const wrapper = document.createElement('div')
-  wrapper.style.marginBottom = '10px'
+  wrapper.style.background = '#ffffff20'
+  wrapper.style.textAlign = 'center'
+  wrapper.style.position = 'fixed'
+  wrapper.style.bottom = '0'
+  wrapper.style.width = '100%'
+  wrapper.style.padding = '5px'
+  wrapper.style.zIndex = 1
 
   modes.forEach(mode => {
     const button = document.createElement('button')
 
     button.textContent = mode.name
     button.style.margin = '5px'
+    button.style.padding = '5px'
 
     button.addEventListener('click', event => {
       ref.name = mode.name
