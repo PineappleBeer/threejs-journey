@@ -1,4 +1,7 @@
-export const generateExerciseModes = (modes = [], defaultMode) => {
+export const generateExerciseModes = (
+  modes = [],
+  { defaultMode, before, after } = {}
+) => {
   const initialMode = defaultMode ? defaultMode : modes[0].name
   const ref = {
     name: initialMode,
@@ -24,12 +27,16 @@ export const generateExerciseModes = (modes = [], defaultMode) => {
     button.style.padding = '5px'
 
     button.addEventListener('click', event => {
+      before?.()
+
       ref.name = mode.name
       mode.handler(event)
 
       modes
         .filter(({ name }) => name !== mode.name)
         .forEach(otherMode => otherMode.dispose?.(event))
+
+      after?.()
     })
     wrapper.append(button)
 
